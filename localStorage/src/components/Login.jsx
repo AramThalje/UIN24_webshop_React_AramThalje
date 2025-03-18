@@ -1,45 +1,52 @@
-import { useEffect, useState } from "react"
+import { useState } from "react";
 
-export default function Login({storageUser, setSignedIn, signedIn }){
-    const [userLogin, setUserLogin] = useState([]);
-    const[error, setError] = useState();
+export default function Login({ storageUser, setSignedIn }) {
+  const [userLogin, setUserLogin] = useState([]);
+  const [error, setError] = useState();
 
-    const handleChange = (e) => {
-        const inputName = e.target.name;
-        const inputValue = e.target.value;
-        setUserLogin((prev) => ({...prev, [inputName] : inputValue}))
-        
-    };
-    const handleCkick = (e) => {
-        e.preventDefault();
-        const existingUser = JSON.parse(storageUser);
-        const exists =
-             userLogin.username === existingUser.username &&
-             userLogin.password === existingUser.password;
-        console.log(exists);
-        exists ? setSignedIn(true) : setError("Brukername eller passord stemmer ikke ")
+  const handleChange = (e) => {
+    const inputName = e.target.name;
+    const inputValue = e.target.value;
+    setUserLogin((prev) => ({ ...prev, [inputName]: inputValue }));
+  };
 
-        sessionStorage.setItem("login", true)
+  const handleClick = (e) => {
+    e.preventDefault();
+    const existingUser = JSON.parse(storageUser);
+    const exists =
+      userLogin.username === existingUser.username &&
+      userLogin.password === existingUser.password;
+    console.log(exists);
+    exists
+      ? setSignedIn(true)
+      : setError("Brukernavn eller passord stemmer ikke");
+  };
 
-    }
-
-    
-
-
-    return (
-        <section>
-            <h1>Login</h1>
-            <form>
-                <label htmlFor="">Brukernavn
-                    <input type="text" placeholder="Thlaje..." name="username" onChange={handleChange}/>
-                </label>
-                <label htmlFor="">Passord
-                    <input type="password" placeholder="**********" name="password" onChange={handleChange}/>
-                </label>
-                <button onClick={handleCkick} type="submit">Logg inn</button>
-            </form>
-            {error}
-        </section>
-    
-)
+  return (
+    <section>
+      <h1>Logg inn</h1>
+      <form>
+        <label>
+          Brukernavn
+          <input
+            type="text"
+            placeholder="Ackarlse..."
+            name="username"
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          Passord
+          <input
+            type="password"
+            placeholder="*********"
+            name="password"
+            onChange={handleChange}
+          />
+        </label>
+        <button onClick={handleClick}>Logg inn</button>
+      </form>
+      {error}
+    </section>
+  );
 }

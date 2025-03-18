@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CategoryHeading from "./CategoryHeading";
 import ProductCard from "./ProductCard";
-export default function PageContent({products, setCartCount}) {
+export default function PageContent({products, setCartCount, setCart, cart}) {
     
     const [title, setTitle] = useState("Ninjago")
     return (
@@ -9,7 +9,7 @@ export default function PageContent({products, setCartCount}) {
                     <CategoryHeading title={title} />
                     <div id="productlist">
                       {products.map((product, index) => 
-                        <ProductCard product={product} key={`FCT_${index}`} setCartCount={setCartCount} />
+                        <ProductCard product={product} key={`FCT_${index}`} setCartCount={setCartCount} cart={cart} setCart={setCart} />
                       )}
                     </div>
                     {/*<!--

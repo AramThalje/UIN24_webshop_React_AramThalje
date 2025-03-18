@@ -57,6 +57,7 @@ export const products = [
       storage: 4,
       imagefile: "vengestone_warrior.webp",
     },
+    
   ];
   
   /*

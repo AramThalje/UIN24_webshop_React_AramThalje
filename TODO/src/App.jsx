@@ -1,34 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Nav from './components/Nav'
-import TodoForm from './components/TodoForm'
-import Todos from './components/Todos'
+import { useState } from "react";
+import "./App.css";
+import Nav from "./components/Nav";
+import TodoForm from "./components/TodoForm";
+import Todos from "./components/Todos";
+import "./styles/nav.scss"
+import "./styles/todo.scss"
+import "./styles/todoForm.scss"
 
 function App() {
-  const [count, setCount] = useState(0)
-
   const startTodos = [
     {
       id: 0,
-      title: 'Lage middag',
-      content: 'Skal lage spaghetti med kjøttsaus og parmasan, husk å handle på vei hjem fra jobb!'
-    }
-    
-  ]
+      title: "Lage middag",
+      content:
+        "Skal lage spaghetti med kjøttsaus og parmasan, husk å handle på vei hjem fra jobb!",
+    },
+  ];
+
+  const [todos, setTodos] = useState(startTodos);
 
   return (
     <>
-    <Nav username="ackarlse"/>   
+      <Nav username="Aram" />
       <main>
-        <h1>TODO app</h1>
-        <TodoForm />
-
-        <Todos startTodos={startTodos}/>
+        <h1>To do app</h1>
+        <TodoForm addTodo={todo => setTodos(prev => [...prev, todo])} />
+        <Todos startTodos={todos} setTodos={setTodos} />
       </main>
     </>
   );
 }
 
-export default App
+export default App;

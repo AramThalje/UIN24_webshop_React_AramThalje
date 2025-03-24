@@ -1,12 +1,27 @@
+import { slugifier } from "./helpers";
+
 export const category = {
     type: "document",
-    name: "category",
+    name: "category", 
     title: "Kategori",
-    fields: [
+
+    fields: [ 
+
         {
-            name: "categoryname",
-            title: "Kategorynavn",
-            type: "string"
+            name: "categoryname", 
+            title: "Kategorinavn", 
+            type: "string" 
+        },
+
+        {
+            name: "categoryslug", 
+            title: "Åpen URL", 
+            type: "slug", 
+            options: {
+                source: "categoryname", 
+                slugify: input => slugifier(input)
+
+            }
         }
     ]
-}
+};
